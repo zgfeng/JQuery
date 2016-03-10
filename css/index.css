@@ -4,8 +4,17 @@ body {
     font-size:12px;
     background:#fff;
 }
+/*更改jQuery UI主题的对话框header的背景*/
 .ui-widget-header {
-    background:url(../images/ui_header_bg.png);
+	background:url(../images/ui_header_bg.png);
+}
+/*按钮正常状态的背景*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+	background:url(../images/ui_header_bg.png);
+}
+/*按钮点击状态的背景*/
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active {
+	background:url(../images/ui_white.png);
 }
 #header {
     height:40px;
