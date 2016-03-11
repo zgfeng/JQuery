@@ -18,5 +18,13 @@ $(function(){
 
     $('#reg').buttonset();
     $('#date').datepicker();
-    $('#reg input[title]').tooltip();
+
+    $('[title]').tooltip({
+        show : false,
+        hide : false,
+        position : {
+            my : 'left center',
+            at : 'right+5 center'
+        },
+    });
 });
