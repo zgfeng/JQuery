@@ -24,6 +24,19 @@ body {
 .ui-menu-item a .ui-state-focus {
     background:url(../images/ui_header_bg.png);
 }
+.ui-menu-item a {
+	color:#666;
+}
+/*日历UI的今天单元格样式*/
+.ui-datepicker-today .ui-state-highlight {
+	border:1px solid #eee;
+	color:#f60;
+}
+/*日历UI的选定单元格样式*/
+.ui-datepicker-current-day .ui-state-active {
+	border:1px solid #eee;
+	color:#06f;
+}
 #header {
     height:40px;
     width:100%;
