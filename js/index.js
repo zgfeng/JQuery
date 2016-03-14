@@ -19,12 +19,17 @@ $(function(){
     $('#reg').buttonset();
     $('#date').datepicker();
 
-    $('[title]').tooltip({
+    $('#reg input[title]').tooltip({
         show : false,
         hide : false,
         position : {
             my : 'left center',
             at : 'right+5 center'
         },
+    });
+
+    var host = ['test','teacher','tteh','aa','aabb','aacc'];
+    $('#email').autocomplete({
+        source : host,
     });
 });

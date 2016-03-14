@@ -20,6 +20,10 @@ body {
 .ui-tooltip {
     color:red;
 }
+/*邮箱自动补全的悬停背景颜色*/
+.ui-menu-item a .ui-state-focus {
+    background:url(../images/ui_header_bg.png);
+}
 #header {
     height:40px;
     width:100%;
