@@ -12,97 +12,81 @@ $(function(){
         width : 320,
         height : 340,
         buttons : {
-            '提交' : function(){}
+            '提交' : function(){
+                $(this).submit();
+            },
         },
-    });
-
-    $('#reg').buttonset();
-    $('#date').datepicker({
-        dateFormat : 'yy-mm-dd',
-		//dayNames : ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
-		//dayNamesShort : ['星期日','星期一','星期二','星期三','星期四','星期五','星期六'],
-		dayNamesMin : ['日','一','二','三','四','五','六'],
-		monthNames : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-		monthNamesShort : ['一月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'],
-		altField : '#abc',
-		altFormat : 'dd/mm/yy',
-		//appendText : '日历',
-		showWeek : true,
-		weekHeader : '周',
-		firstDay : 1,
-		//disabled : true,
-		//numberOfMonths : 3,
-		//numberOfMonths : [3,2],
-		//showOtherMonths : true,
-		//selectOtherMonths : true,
+    }).buttonset().validate({
+	
+		submitHandler : function (form) {
+			alert('验证成功，准备提交中。。');
+		},
+	
+		showErrors : function (errorMap, errorList) {
+			var errors = this.numberOfInvalids();
+			
+			if (errors > 0) {
+				$('#reg').dialog('option', 'height', errors * 20 + 340);
+			} else {
+				$('#reg').dialog('option', 'height', 340);
+			}
+			
+			this.defaultShowErrors();
+		},
+		
+		highlight : function (element, errorClass) {
+			$(element).css('border', '1px solid #630');
+		},
+		
+		unhighlight : function (element, errorClass) {
+			$(element).css('border', '1px solid #ccc');
+			$(element).parent().find('span').html('&nbsp;').addClass('succ');
+		},
+	
+		errorLabelContainer : 'ol.reg_error',
+		wrapper : 'li',
+	
+		rules : {
+			user : {
+				required : true,
+				minlength : 2,
+			},
+			pass : {
+				required : true,
+				minlength : 6,
+			},
+			email : {
+				required : true,
+				email : true
+			},
+			date : {
+				date : true,
+			},
+		},
+		messages : {
+			user : {
+				required : '帐号不得为空！',
+				minlength : jQuery.format('帐号不得小于{0}位！'),
+			},
+			pass : {
+				required : '密码不得为空！',
+				minlength : jQuery.format('密码不得小于{0}位！'),
+			},
+			email : {
+				required : '邮箱不得为空！',
+				minlength : '请输入正确的邮箱地址！',
+			},	
+		}
+	});
+	
+	$('#date').datepicker({
 		changeMonth : true,
 		changeYear : true,
-		//isRTL : true,
-		//autoSize : true,
-		//showOn : 'button',
-		//buttonText : '日历',
-		//buttonImage : 'img/calendar.gif',
-		//buttonImageOnly : true,
-		showButtonPanel : true,
-		closeText : '关闭',
-		currentText : '今天dd',
-		//nextText : '下个月mm',
-		//prevText : '上个月mm',
-		//navigationAsDateFormat : true,
-		//yearSuffix : '年',
-		//showMonthAfterYear : true,
-		
-		//日期的限制优先级，min和max最高
+		yearSuffix : '',
 		maxDate : 0,
-		//minDate : -8000,				//但是年份有另外一个属性进行了限制
-		hideIfNoPrevNext : true,
-		
-		//而maxDate和minDate只是限制日期，而年份的限制的优先级没有另外一个高
 		yearRange : '1950:2020',
-		
-		//defaultDate : -1,
-		
-		//gotoCurrent : true,
-		
-		//showAnim : true,
-		//duration : 1000,
-		//showAnim : 'slide',
-		//beforeShow : function () {
-		//	alert('日历显示之前被调用！');
-		//}
-		
-		//beforeShowDay : function (date) {
-		//	if (date.getDate() == 1) {
-		//		return [false, 'a', '不能选择1号'];
-		//	} else {
-		//		return [true];
-		//	}
-		//}
-		
-		//onChangeMonthYear : function (year, month, inst) {
-			//alert('日历中年份或月份改变时激活！');
-			//alert(year);
-			//alert(month);
-			//alert(inst.id);
-		//}
-		
-		//onSelect : function (dateText, inst) {
-		//	alert(dateText);
-		//}
-		
-		//onClose : function (dateText, inst) {
-		//	alert(dateText);
-		//}
-    });
 
-    $('#reg input[title]').tooltip({
-        show : false,
-        hide : false,
-        position : {
-            my : 'left center',
-            at : 'right+5 center'
-        },
-    });
+	});
 
     $('#email').autocomplete({
         delay : 0,

@@ -5,6 +5,7 @@
 <title>知问前端</title>
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
+<script src="js/jquery.validate.js"></script>
 <script src="js/index.js"></script>
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -27,20 +28,21 @@
         </div>
     </div>
 
-    <div id="reg" title="会员注册">
+    <form id="reg" action="test.php" title="会员注册">
+        <ol class="reg_error"></ol>
         <p>
             <label for="user">账号：</label>
-            <input type="text" name="user" class="text" id="user" title="请输入账号，不得小于两位！" />
+            <input type="text" name="user" class="text" id="user" />
             <span class="star">*</span>
         </p>
         <p>
             <label for="pass">密码：</label>
-            <input type="text" name="pass" class="text" id="pass" title="请输入密码，不得小于六位！" />
+            <input type="text" name="pass" class="text" id="pass" />
             <span class="star">*</span>
         </p>
         <p>
             <label for="email">邮箱：</label>
-            <input type="text" name="email" class="text" id="email" title="请输入密码，不得小于六位！" />
+            <input type="text" name="email" class="text" id="email" />
             <span class="star">*</span>
         </p>
         <p>
@@ -52,6 +54,6 @@
             <label for="date">生日：</label>
             <input type="text" name="date" class="text" id="date" readonly="readonly" />
         </p>
-    <div>
+    </form>
 </body>
 </html>
