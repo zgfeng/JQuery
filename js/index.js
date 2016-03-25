@@ -5,8 +5,22 @@ $(function(){
         },
     });
 
+    $('#loading').dialog({
+		autoOpen : false,
+		modal : true,
+		closeOnEscape : false,
+		resizable : false,
+		draggable : false,
+		width : 180,
+		height : 50,
+	}).parent().parent().find('.ui-widget-header').hide();
+	
+	$('#reg_a').click(function () {
+		$('#reg').dialog('open');
+	});
+
     $('#reg').dialog({
-        autoOpen : true,
+        autoOpen : false,
         modal : true,
         resizable : false,
         width : 320,
@@ -19,7 +33,27 @@ $(function(){
     }).buttonset().validate({
 	
 		submitHandler : function (form) {
-			alert('验证成功，准备提交中。。');
+			$(form).ajaxSubmit({
+				url : 'add.php',
+				type : 'POST',
+				beforeSubmit : function (formData, jqForm, options) {
+					$('#loading').dialog('open');
+					$('#reg').dialog('widget').find('button').eq(1).button('disable');
+				},
+				success : function (responseText, statusText) {
+					if (responseText) {
+						$('#reg').dialog('widget').find('button').eq(1).button('enable');
+						$('#loading').css('background', 'url(images/success.gif) no-repeat 20px center').html('数据新增成功...');
+						setTimeout(function () {
+							$('#loading').dialog('close');
+							$('#reg').dialog('close');
+							$('#reg').resetForm();
+							$('#reg span.star').html('*').removeClass('succ');
+							$('#loading').css('background', 'url(images/loading.gif) no-repeat 20px center').html('数据交互中...');
+						}, 1000);
+					}
+				},
+			});
 		},
 	
 		showErrors : function (errorMap, errorList) {

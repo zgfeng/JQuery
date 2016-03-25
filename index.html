@@ -6,6 +6,7 @@
 <script src="js/jquery.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/jquery.validate.js"></script>
+<script src="js/jquery.form.js"></script>
 <script src="js/index.js"></script>
 <link rel="shortcut icon" href="images/favicon.ico" />
 <link rel="stylesheet" href="css/jquery-ui.css" />
@@ -28,7 +29,7 @@
         </div>
     </div>
 
-    <form id="reg" action="test.php" title="会员注册">
+    <form id="reg" action="add.php" title="会员注册">
         <ol class="reg_error"></ol>
         <p>
             <label for="user">账号：</label>
@@ -37,7 +38,7 @@
         </p>
         <p>
             <label for="pass">密码：</label>
-            <input type="text" name="pass" class="text" id="pass" />
+            <input type="password" name="pass" class="text" id="pass" />
             <span class="star">*</span>
         </p>
         <p>
@@ -52,8 +53,9 @@
         </p>
         <p>
             <label for="date">生日：</label>
-            <input type="text" name="date" class="text" id="date" readonly="readonly" />
+            <input type="text" name="birthday" class="text" id="date" readonly="readonly" />
         </p>
     </form>
+    <div id="loading">数据交互中...</div>
 </body>
 </html>
