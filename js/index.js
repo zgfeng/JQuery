@@ -132,6 +132,7 @@ $(function(){
                 host  = '',                 //邮箱的域名
                 ix    = term.indexOf('@'),  //@的位置
                 result= [];                 //最终呈现的邮箱列表
+
             result.push(term);
 
             //当有@的时候，重新分别用户名和域名
@@ -160,4 +161,5 @@ $(function(){
                 
         },
     });
+
 });

@@ -9,11 +9,10 @@ $sex      = $_POST['sex'];
 $birthday = strtotime($_POST['birthday']);
 $date     = time();
 
-$query = "INSERT INTO user(user,pass,email,sex,birthday,date)VALUES
-        ($user,$pass,$email,$sex,$birthday,$date)";
-
+$query = "INSERT INTO user (user,pass,email,sex,birthday,date) VALUES
+        ('$user','$pass','$email','$sex','$birthday','$date')";
 
 mysql_query($query) or die ('新增失败！信息：'.mysql_error());
 echo mysql_affected_rows();
-mysqli_close();
+mysql_close();
 ?>
