@@ -5,6 +5,23 @@ $(function(){
         },
     });
 
+
+    $('#member, #logout').hide();
+	
+	if ($.cookie('user')) {
+		$('#member, #logout').show();
+		$('#reg_a, #login_a').hide();
+		$('#member').html($.cookie('user'));
+	} else {
+		$('#member, #logout').hide();
+		$('#reg_a, #login_a').show();
+	}
+	
+	$('#logout').click(function () {
+		$.removeCookie('user');
+		window.location.href = '/JQuery/';
+	});
+
     $('#loading').dialog({
 		autoOpen : false,
 		modal : true,
@@ -44,12 +61,16 @@ $(function(){
 					if (responseText) {
 						$('#reg').dialog('widget').find('button').eq(1).button('enable');
 						$('#loading').css('background', 'url(images/success.gif) no-repeat 20px center').html('数据新增成功...');
+                        $.cookie('user',$('#user').val());
 						setTimeout(function () {
 							$('#loading').dialog('close');
 							$('#reg').dialog('close');
 							$('#reg').resetForm();
 							$('#reg span.star').html('*').removeClass('succ');
 							$('#loading').css('background', 'url(images/loading.gif) no-repeat 20px center').html('数据交互中...');
+                            $('#member, #logout').show();
+							$('#reg_a, #login_a').hide();
+							$('#member').html($.cookie('user'));
 						}, 1000);
 					}
 				},
