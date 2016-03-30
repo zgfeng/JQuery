@@ -140,3 +140,13 @@ body {
 	top:2px;
 	margin:0 2px 0 125px;
 }
+#tabs {
+    margin:200px;
+    border:none;
+}
+#tab1,#tab2,#tab3 {
+	border:1px solid #ccc;
+	border-top:none;
+	position:relative;
+	top:-2px;
+}
